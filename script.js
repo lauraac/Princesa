@@ -47,67 +47,53 @@ function initIntroExperience() {
   const enterBtn = document.getElementById("enterInvitationBtn");
   const enableSoundBtn = document.getElementById("enableSoundBtn");
   const introVideo = document.getElementById("introVideo");
-  const bgMusic = document.getElementById("bgMusic");
 
-  if (!introOverlay || !enterBtn || !introVideo) return;
+  if (!introOverlay || !enterBtn || !introVideo || !enableSoundBtn) return;
 
   safePlayVideo(introVideo);
 
-  if (enableSoundBtn) {
-    enableSoundBtn.addEventListener("click", async () => {
-      if (audioEnabled) return;
+  enableSoundBtn.addEventListener("click", async () => {
+    if (audioEnabled) return;
 
+    try {
       audioEnabled = true;
 
-      try {
-        introVideo.muted = false;
-        await introVideo.play();
-        enableSoundBtn.textContent = "✅ Sonido activado";
-        enableSoundBtn.disabled = true;
-      } catch (error) {
-        console.warn("No se pudo activar sonido en el video:", error);
-      }
+      introVideo.pause();
+      introVideo.currentTime = 0;
+      introVideo.muted = false;
+      introVideo.volume = 1;
 
-      if (bgMusic) {
-        try {
-          bgMusic.volume = 0.65;
-          await bgMusic.play();
-          bgMusic.pause();
-          bgMusic.currentTime = 0;
-        } catch (error) {
-          console.warn("No se pudo preparar audio:", error);
-        }
-      }
-    });
-  }
+      await introVideo.play();
 
-  enterBtn.addEventListener("click", async () => {
+      enableSoundBtn.textContent = "✅ Sonido activado";
+      enableSoundBtn.disabled = true;
+    } catch (error) {
+      console.warn("No se pudo activar sonido en el video:", error);
+      audioEnabled = false;
+    }
+  });
+
+  enterBtn.addEventListener("click", () => {
     if (introDismissed) return;
     introDismissed = true;
 
     introOverlay.classList.add("intro-overlay--hidden");
 
-    if (audioEnabled && bgMusic) {
-      try {
-        await bgMusic.play();
-        updateMusicButtonState(true);
-      } catch (error) {
-        console.warn("No se pudo iniciar música al entrar:", error);
-      }
-    }
-
     setTimeout(() => {
       introOverlay.style.display = "none";
-    }, 700);
+    }, 650);
   });
 
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden && !introDismissed) {
-      safePlayVideo(introVideo);
+      if (audioEnabled) {
+        introVideo.play().catch(() => {});
+      } else {
+        safePlayVideo(introVideo);
+      }
     }
   });
 }
-
 async function safePlayVideo(videoEl) {
   try {
     videoEl.muted = true;

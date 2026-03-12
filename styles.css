@@ -41,6 +41,7 @@ body {
     "Segoe UI",
     sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body.desktop-locked {
@@ -58,53 +59,7 @@ video {
   min-height: 100vh;
   overflow-x: hidden;
 }
-.intro-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
-}
-.invitation {
-  width: 100%;
-  max-width: 480px;
-  margin: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
 
-.section {
-  width: 100%;
-}
-.story-track {
-  display: flex;
-  transition: transform 0.4s ease;
-  width: 100%;
-}
-
-.story-slide {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-button {
-  touch-action: manipulation;
-}
-.intro-overlay--hidden {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
 .fireflies {
   pointer-events: none;
   position: fixed;
@@ -178,7 +133,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 12px;
   z-index: 30;
 }
 
@@ -195,60 +150,65 @@ button {
 .intro-card {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 420px;
+  max-height: 92vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   background:
     linear-gradient(135deg, rgba(31, 127, 107, 0.18), rgba(5, 8, 20, 0.95)),
     radial-gradient(circle at top, rgba(197, 155, 255, 0.15), transparent 60%);
   border-radius: var(--radius-xl);
-  padding: 24px 20px 22px;
+  padding: 14px 14px 16px;
   border: var(--border-glass);
   box-shadow: var(--shadow-soft), var(--shadow-gold);
   text-align: center;
-  overflow: hidden;
 }
 
 .intro-crown img {
-  width: 120px;
-  margin: 0 auto;
+  width: 72px;
+  margin: 0 auto 6px;
   animation: float 3s ease-in-out infinite;
 }
 
 .intro-title-img {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .intro-title-img img {
-  max-width: 90%;
-  width: 300px;
+  max-width: 75%;
+  width: 180px;
   margin: 0 auto;
   animation: fadeIn 2s ease-in-out;
 }
 
 .intro-subtitle {
-  margin: 10px 0 16px;
+  margin: 8px 0 12px;
   color: var(--text-soft);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
 .intro-video-wrapper {
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   background: #000;
 }
 
 .intro-video {
   width: 100%;
   aspect-ratio: 9 / 16;
-  object-fit: cover;
+  max-height: 48vh;
+  object-fit: contain;
+  background: #000;
 }
 
 .intro-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 4px;
 }
 
 .intro-note {
@@ -316,12 +276,14 @@ button {
 /* BOTONES */
 .btn-primary,
 .btn-ghost {
+  min-height: 52px;
+  width: 100%;
   border-radius: 999px;
   border: none;
   outline: none;
   cursor: pointer;
   font: inherit;
-  padding: 11px 18px;
+  padding: 12px 18px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -331,6 +293,7 @@ button {
   transition:
     transform 0.2s ease,
     opacity 0.2s ease;
+  touch-action: manipulation;
 }
 
 .btn-primary:active,
