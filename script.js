@@ -45,18 +45,10 @@ function initMobileOnlyGate() {
 function initIntroExperience() {
   const introOverlay = document.getElementById("introOverlay");
   const enterBtn = document.getElementById("enterInvitationBtn");
-  const enableSoundBtn = document.getElementById("enableSoundBtn");
   const introVideo = document.getElementById("introVideo");
-  const introVideoWrapper = document.getElementById("introVideoWrapper");
+  const introCard = document.querySelector(".intro-card");
 
-  if (
-    !introOverlay ||
-    !enterBtn ||
-    !introVideo ||
-    !enableSoundBtn ||
-    !introVideoWrapper
-  )
-    return;
+  if (!introOverlay || !enterBtn || !introVideo || !introCard) return;
 
   safePlayVideo(introVideo);
 
@@ -72,18 +64,26 @@ function initIntroExperience() {
       introVideo.volume = 1;
 
       await introVideo.play();
-
-      enableSoundBtn.classList.add("hidden");
     } catch (error) {
       console.warn("No se pudo activar sonido en el video:", error);
       audioEnabled = false;
     }
   }
 
-  enableSoundBtn.addEventListener("click", activateIntroSound);
-  introVideoWrapper.addEventListener("click", activateIntroSound);
+  // Cualquier toque dentro del intro activa audio
+  introOverlay.addEventListener("click", async (event) => {
+    const clickedEnter = event.target.closest("#enterInvitationBtn");
 
-  enterBtn.addEventListener("click", () => {
+    if (clickedEnter) {
+      return;
+    }
+
+    await activateIntroSound();
+  });
+
+  enterBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+
     if (introDismissed) return;
     introDismissed = true;
 
