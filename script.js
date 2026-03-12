@@ -114,6 +114,7 @@ async function safePlayVideo(videoEl) {
     videoEl.setAttribute("muted", "");
     videoEl.setAttribute("playsinline", "");
     videoEl.setAttribute("webkit-playsinline", "");
+
     await videoEl.play();
   } catch (error) {
     console.warn("No se pudo reproducir automáticamente el video:", error);
