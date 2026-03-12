@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Invitación XV - Evelyn Nayely Alfonso González</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description"
+    content="Invitación mágica inspirada en La Princesa y el Sapo para celebrar los XV años de Evelyn Nayely Alfonso González." />
+
+  <!-- Preview -->
+  <meta property="og:title" content="Invitación XV de Evelyn Nayely Alfonso González ✨" />
+  <meta property="og:description"
+    content="Acompáñanos a celebrar una noche mágica inspirada en La Princesa y el Sapo." />
+  <meta property="og:image" content="https://lauraac.github.io/princesa-y-sapo/img/xv.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lauraac.github.io/princesa-y-sapo/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Invitación XV de Evelyn Nayely Alfonso González" />
+  <meta name="twitter:description" content="Una noche mágica llena de brillo, sueños y encanto." />
+  <meta name="twitter:image" content="https://lauraac.github.io/princesa-y-sapo/img/preview.jpg" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- MENSAJE SOLO CELULAR -->
+  <!--<div class="desktop-blocker" id="desktopBlocker">
+    <div class="desktop-blocker__card">
+      <img src="./img/corona.png" alt="Corona" class="desktop-blocker__icon" />
+      <h2>Esta invitación es solo para celular 📱</h2>
+      <p>
+        Para vivir la experiencia completa con video, música y animaciones,
+        abre este enlace desde tu teléfono.
+      </p>
+    </div>
+  </div> -->
+
+  <!-- ESTRELLAS -->
+  <div class="magic-stars"></div>
+
+  <!-- INTRO VIDEO -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-card">
+      <div class="intro-crown">
+        <img src="./img/corona.png" alt="Corona" />
+      </div>
+
+      <div class="intro-title-img">
+        <img src="./img/texto.gif" alt="Bienvenido al cuento de Evelyn" />
+      </div>
+
+      <p class="intro-subtitle">
+        Toca para comenzar esta historia mágica
+      </p>
+
+      <div class="intro-video-wrapper">
+        <video id="introVideo" class="intro-video" playsinline webkit-playsinline preload="metadata" muted
+          poster="./img/img1.jpg">
+          <source src="./img/Evelyn Nayely.mp4" type="video/mp4" />
+          Tu navegador no soporta video HTML5.
+        </video>
+      </div>
+
+      <div class="intro-actions">
+        <button class="btn-primary" id="enterInvitationBtn" type="button">
+          Entrar a la invitación ✨
+        </button>
+
+        <button class="btn-ghost" id="enableSoundBtn" type="button">
+          🔊 Activar sonido
+        </button>
+      </div>
+
+      <p class="intro-note">
+        El video y la música funcionan mejor en iPhone y Android después de tocar la pantalla.
+      </p>
+    </div>
+
+    <div class="magic-sparkles"></div>
+  </div>
+
+  <div class="page-background">
+    <div class="fireflies"></div>
+
+    <main class="invitation">
+      <!-- HERO -->
+      <section class="section hero" id="inicio">
+        <div class="hero-decor hero-decor--top"></div>
+
+        <div class="hero-image-frame">
+          <img src="./img/princesa.jpg" alt="Princesa y sapo" class="hero-image" />
+          <div class="hero-glow"></div>
+        </div>
+
+        <p class="hero-tagline">Mis XV años</p>
+
+        <h1 class="hero-name">
+          Evelyn Nayely<br />
+          <span>Alfonso González</span>
+        </h1>
+
+        <p class="hero-invite">
+          Con la bendición de Dios y el amor de mi familia,
+          te invito a celebrar una noche mágica inspirada en
+          <strong>La Princesa y el Sapo</strong>.
+        </p>
+
+        <div class="hero-badge">
+          <p class="hero-badge-title">Celebración especial</p>
+          <p class="hero-badge-date" id="eventShortInfo">
+            12 de Octubre · 7:00 PM
+          </p>
+          <p class="hero-badge-place">Salón de eventos</p>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#detalles" class="btn-ghost">Ver detalles</a>
+          <a href="#confirmacion" class="btn-primary">Confirmar asistencia</a>
+        </div>
+
+        <div class="hero-decor hero-decor--bottom"></div>
+      </section>
+
+      <!-- PAPÁS / PADRINOS -->
+      <section class="section family-section">
+        <h2 class="section-title">Con la bendición de</h2>
+
+        <div class="family-grid">
+          <article class="family-card">
+            <h3>Papás</h3>
+            <p>Juan Carlos Alfonso Villa</p>
+            <p>Isabel González Aguilar</p>
+          </article>
+
+          <article class="family-card">
+            <h3>Padrinos</h3>
+            <p>René Alfonso Villa</p>
+            <p>Diana Lady Urrutia Vargas</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section class="section countdown-section">
+        <h2 class="section-title">Faltan para el gran día</h2>
+
+        <div class="countdown" id="countdown">
+          <div class="countdown-item">
+            <span class="count-number" id="days">00</span>
+            <span class="count-label">Días</span>
+          </div>
+          <div class="countdown-item">
+            <span class="count-number" id="hours">00</span>
+            <span class="count-label">Horas</span>
+          </div>
+          <div class="countdown-item">
+            <span class="count-number" id="minutes">00</span>
+            <span class="count-label">Min</span>
+          </div>
+          <div class="countdown-item">
+            <span class="count-number" id="seconds">00</span>
+            <span class="count-label">Seg</span>
+          </div>
+        </div>
+
+        <p class="countdown-note">
+          Cada segundo nos acerca más a una noche mágica. ✨
+        </p>
+      </section>
+
+      <!-- PROLOGO -->
+      <section class="section prologue-section">
+        <h2 class="section-title">Prólogo</h2>
+        <p class="section-text">
+          Esta no es solo una invitación, es el inicio de un cuento encantado.
+        </p>
+
+        <div class="prologue-grid">
+          <div class="media-card">
+            <img src="./img/gif-libro.gif" alt="Libro mágico" class="media-full" />
+          </div>
+
+          <div class="media-card">
+            <img src="./img/gif-luciernagas.gif" alt="Luciérnagas mágicas" class="media-full" />
+          </div>
+        </div>
+      </section>
+
+      <!-- HISTORIA -->
+      <section class="section story-section">
+        <h2 class="section-title">Había una vez...</h2>
+
+        <p class="story-text">
+          En un mundo lleno de sueños, magia y esperanza, una niña llamada
+          <strong>Evelyn Nayely</strong> fue creciendo rodeada de amor,
+          alegría y momentos inolvidables.
+        </p>
+
+        <p class="story-text">
+          Hoy esa niña se convierte en una hermosa quinceañera,
+          lista para vivir una noche inspirada en la magia de un cuento.
+        </p>
+
+        <blockquote class="story-quote">
+          “Los sueños más hermosos florecen cuando el corazón está lleno de amor.”
+        </blockquote>
+
+        <div class="story-gif-frame">
+          <img src="./img/foto2.png" alt="Historia mágica" class="story-gif" />
+        </div>
+      </section>
+
+      <!-- SECCIÓN LIBRO -->
+      <section class="section fairytale-book-section">
+        <h2 class="section-title">El cuento de Evelyn</h2>
+
+        <div class="book-page">
+          <div class="book-page-media">
+            <img src="./img/cuento1.jpg" alt="Evelyn de pequeña" />
+          </div>
+          <div class="book-page-text">
+            <h3>Capítulo 1</h3>
+            <p>
+              Había una vez una niña llena de ternura, luz y una sonrisa capaz
+              de iluminar cualquier lugar.
+            </p>
+          </div>
+        </div>
+
+        <div class="book-page">
+          <div class="book-page-media">
+            <img src="./img/gif-brillos.gif" alt="Brillos mágicos" />
+          </div>
+          <div class="book-page-text">
+            <h3>Capítulo 2</h3>
+            <p>
+              Entre sueños, juegos y momentos especiales, su historia comenzó
+              a llenarse de magia y amor.
+            </p>
+          </div>
+        </div>
+
+        <div class="book-page">
+          <div class="book-page-media">
+            <video class="inline-story-video" playsinline webkit-playsinline muted loop autoplay preload="metadata"
+              poster="./img/video-cap1-poster.jpg">
+              <source src="./img/video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="book-page-text">
+            <h3>Capítulo 3</h3>
+            <p>
+              Como en los cuentos más hermosos, fue creciendo con gracia,
+              esperanza y un corazón lleno de sueños.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARRUSEL TIPO CUENTO -->
+      <section class="section story-carousel-section">
+        <h2 class="section-title">Capítulos mágicos</h2>
+        <p class="section-text">
+          Un recorrido por su historia, mezclando fotos, GIFs y videos.
+        </p>
+
+        <div class="story-slider" id="storySlider">
+          <button class="story-nav prev" id="storyPrev" aria-label="Anterior">‹</button>
+
+          <div class="story-track-wrapper">
+            <div class="story-track" id="storyTrack">
+              <!-- Slide 1 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <img src="./img/foto1.png" alt="Infancia Evelyn" />
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 1</h3>
+                  <p>
+                    Sus primeros años estuvieron llenos de ternura,
+                    alegría y momentos inolvidables.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 2 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <img src="./img/foto2.png" alt="Libro encantado" />
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 2</h3>
+                  <p>
+                    Como en un libro de cuentos, cada página de su vida
+                    fue escribiéndose con amor.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 3 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <video class="carousel-video" playsinline webkit-playsinline muted loop preload="metadata"
+                    poster="./img/foto3.png">
+                    <source src="./video/capitulo1.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 3</h3>
+                  <p>
+                    Su historia siguió creciendo con magia,
+                    dulzura y sueños cada vez más grandes.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 4 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <img src="./img/cuento3.jpg" alt="Recuerdo especial" />
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 4</h3>
+                  <p>
+                    Entre recuerdos hermosos, fue floreciendo
+                    una joven llena de luz y elegancia.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 5 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <video class="carousel-video" playsinline webkit-playsinline muted loop preload="metadata"
+                    poster="./img/foto4.png">
+                    <source src="./video/capitulo2.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 5</h3>
+                  <p>
+                    Cada paso de su camino la acercó a este momento
+                    tan esperado y especial.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 6 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <img src="./img/gif-brillos.gif" alt="Brillos mágicos" />
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo 6</h3>
+                  <p>
+                    Y hoy, como en toda gran historia,
+                    llega el capítulo más mágico: sus XV años.
+                  </p>
+                </div>
+              </article>
+
+              <!-- Slide 7 -->
+              <article class="story-slide">
+                <div class="story-slide-media">
+                  <video class="carousel-video" playsinline webkit-playsinline muted loop preload="metadata"
+                    poster="./img/video-cap2-poster.jpg">
+                    <source src="./video/capitulo3.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="story-slide-text">
+                  <h3>Capítulo Final</h3>
+                  <p>
+                    Esta noche celebramos el inicio de una nueva etapa
+                    llena de sueños, magia y bendiciones.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <button class="story-nav next" id="storyNext" aria-label="Siguiente">›</button>
+        </div>
+
+        <div class="story-dots" id="storyDots"></div>
+      </section>
+
+      <!-- VIDEO DESTACADO -->
+      <section class="section featured-video-section">
+        <h2 class="section-title">Una escena especial</h2>
+        <p class="section-text">
+          Un pequeño momento mágico dentro de esta historia encantada.
+        </p>
+
+        <div class="featured-video-card">
+          <video class="featured-video" controls playsinline webkit-playsinline preload="metadata"
+            poster="./img/video-cap2-poster.jpg">
+            <source src="./video/capitulo2.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+
+      <!-- DETALLES -->
+      <section class="section details-section" id="detalles">
+        <h2 class="section-title">Detalles del evento</h2>
+
+        <div class="details-grid">
+          <article class="detail-card">
+            <h3 class="detail-title">Fecha</h3>
+            <p class="detail-main">Sábado · 12 de Octubre 2025</p>
+            <p class="detail-note">Guarda esta fecha en tu corazón.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3 class="detail-title">Hora</h3>
+            <p class="detail-main">7:00 PM</p>
+            <p class="detail-note">Te esperamos puntualmente.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3 class="detail-title">Iglesia</h3>
+            <p class="detail-main">Templo / Iglesia</p>
+            <p class="detail-note">Dirección pendiente por actualizar.</p>
+            <a href="#" target="_blank" class="detail-link">Ver mapa ⛪</a>
+          </article>
+
+          <article class="detail-card">
+            <h3 class="detail-title">Recepción</h3>
+            <p class="detail-main">Salón de eventos</p>
+            <p class="detail-note">Dirección pendiente por actualizar.</p>
+            <a href="#" target="_blank" class="detail-link">Ver mapa 🎉</a>
+          </article>
+
+          <article class="detail-card">
+            <h3 class="detail-title">Código de vestimenta</h3>
+            <p class="detail-main">Formal / elegante</p>
+            <p class="detail-note">
+              Inspiración sugerida: verde esmeralda, dorado, crema o tonos suaves.
+            </p>
+          </article>
+
+          <article class="detail-card">
+            <h3 class="detail-title">Tema</h3>
+            <p class="detail-main">La Princesa y el Sapo</p>
+            <p class="detail-note">
+              Una noche inspirada en magia, naturaleza, brillo y elegancia.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- MUSICA -->
+      <section class="section music-section">
+        <h2 class="section-title">Melodía encantada</h2>
+        <p class="section-text">
+          Activa la música para vivir la experiencia completa.
+        </p>
+
+        <button class="btn-ghost" id="toggleMusicBtn" type="button">
+          🎵 Reproducir música
+        </button>
+
+        <audio id="bgMusic" preload="auto" loop playsinline>
+          <source src="./audio/musica.mp3" type="audio/mpeg" />
+          Tu navegador no soporta audio HTML5.
+        </audio>
+
+        <p class="music-note">
+          En iPhone y Android el audio se activa mejor después de tocar la pantalla.
+        </p>
+      </section>
+
+      <!-- MESA DE REGALOS -->
+      <section class="section gifts-section">
+        <h2 class="section-title">Mesa de regalos</h2>
+        <p class="section-text">
+          Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo,
+          puedes hacerlo en nuestra mesa de regalos o con sobre.
+        </p>
+
+        <div class="gift-grid">
+          <article class="gift-card">
+            <h3 class="gift-title">Sobres de dinero</h3>
+            <p class="gift-text">
+              Habrá un espacio especial el día del evento para recibir tu regalo con cariño.
+            </p>
+          </article>
+
+          <article class="gift-card">
+            <h3 class="gift-title">Mesa de regalos</h3>
+            <p class="gift-text">
+              Muy pronto podrás encontrar aquí el enlace de la mesa de regalos.
+            </p>
+            <a href="#" class="detail-link">Ver mesa de regalos 🎁</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- DRIVE -->
+      <section class="section drive-section">
+        <h2 class="section-title">Comparte tus recuerdos</h2>
+        <p class="section-text">
+          Después del evento podrás subir tus fotos y ver el álbum compartido.
+        </p>
+
+        <div class="gift-actions">
+          <a href="https://drive.google.com/" target="_blank" class="btn-primary btn-full" id="driveUploadBtn">
+            Subir fotos a Drive 📷
+          </a>
+
+          <a href="https://drive.google.com/" target="_blank" class="btn-ghost btn-full" id="driveAlbumBtn">
+            Ver álbum compartido ✨
+          </a>
+        </div>
+      </section>
+
+      <!-- ITINERARIO -->
+      <section class="section timeline-section">
+        <h2 class="section-title">Itinerario mágico</h2>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <span class="timeline-time">7:00 PM</span>
+            <div class="timeline-content">
+              <h3>Recepción</h3>
+              <p>Bienvenida de invitados y fotos especiales.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-time">8:00 PM</span>
+            <div class="timeline-content">
+              <h3>Ceremonia</h3>
+              <p>Un momento especial para celebrar esta nueva etapa.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-time">9:00 PM</span>
+            <div class="timeline-content">
+              <h3>Cena</h3>
+              <p>Una noche llena de amor, alegría y bendiciones.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-time">10:30 PM</span>
+            <div class="timeline-content">
+              <h3>Baile</h3>
+              <p>La magia continúa con música, emociones y celebración.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CONFIRMACION -->
+      <section class="section rsvp-section" id="confirmacion">
+        <h2 class="section-title">Confirma tu asistencia</h2>
+        <p class="section-text">
+          Tu presencia hará aún más especial esta noche.
+        </p>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <div class="form-group">
+            <label for="guestName">Nombre completo</label>
+            <input type="text" id="guestName" name="guestName" placeholder="Escribe tu nombre aquí" required />
+          </div>
+
+          <div class="form-group">
+            <label for="guestCount">Número de acompañantes</label>
+            <input type="number" id="guestCount" name="guestCount" min="0" max="10" placeholder="Ej. 1, 2, 3..."
+              required />
+          </div>
+
+          <div class="form-group">
+            <p class="form-label">¿Podrás asistir?</p>
+            <div class="form-radio-group">
+              <label class="radio-pill">
+                <input type="radio" name="attendance" value="si" required />
+                <span>Sí, con mucho gusto ✨</span>
+              </label>
+
+              <label class="radio-pill">
+                <input type="radio" name="attendance" value="no" required />
+                <span>No podré asistir 💌</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensaje especial (opcional)</label>
+            <textarea id="message" name="message" rows="3"
+              placeholder="Escribe aquí un deseo o mensaje bonito."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-full">
+            Enviar confirmación
+          </button>
+
+          <a href="https://docs.google.com/forms/" target="_blank" class="btn-ghost btn-full secondary-link"
+            id="googleFormBtn">
+            Confirmar también por formulario 📋
+          </a>
+
+          <p class="rsvp-note">
+            Aquí después puedes conectar Google Forms, Sheets o Apps Script.
+          </p>
+
+          <p class="rsvp-success" id="rsvpSuccessMsg"></p>
+        </form>
+      </section>
+
+      <!-- DESPEDIDA -->
+      <section class="section farewell-section">
+        <div class="farewell-card">
+          <div class="intro-crown">
+            <img src="./img/corona.png" alt="Corona" />
+          </div>
+          <h2 class="farewell-title">Gracias por ser parte de este cuento</h2>
+          <p class="farewell-text">
+            Cada invitado es una estrella en esta historia mágica.
+            ¡Te esperamos con mucho cariño!
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
