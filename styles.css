@@ -182,12 +182,6 @@ video {
   animation: fadeIn 2s ease-in-out;
 }
 
-.intro-subtitle {
-  margin: 8px 0 12px;
-  color: var(--text-soft);
-  font-size: 0.92rem;
-}
-
 .intro-video-wrapper {
   border-radius: 18px;
   overflow: hidden;
@@ -210,12 +204,45 @@ video {
   gap: 10px;
   margin-top: 4px;
 }
+.intro-enter-floating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  min-height: auto;
+  width: auto;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 155, 255, 0.35);
+  background: rgba(10, 18, 30, 0.78);
+  color: var(--accent-gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
 
-.intro-note {
-  margin: 12px 0 0;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  line-height: 1.35;
+.intro-audio-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 4;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  max-width: calc(100% - 24px);
+  width: max-content;
+}
+
+.intro-audio-overlay.hidden {
+  display: none;
 }
 
 .magic-sparkles {

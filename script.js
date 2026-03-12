@@ -47,12 +47,20 @@ function initIntroExperience() {
   const enterBtn = document.getElementById("enterInvitationBtn");
   const enableSoundBtn = document.getElementById("enableSoundBtn");
   const introVideo = document.getElementById("introVideo");
+  const introVideoWrapper = document.getElementById("introVideoWrapper");
 
-  if (!introOverlay || !enterBtn || !introVideo || !enableSoundBtn) return;
+  if (
+    !introOverlay ||
+    !enterBtn ||
+    !introVideo ||
+    !enableSoundBtn ||
+    !introVideoWrapper
+  )
+    return;
 
   safePlayVideo(introVideo);
 
-  enableSoundBtn.addEventListener("click", async () => {
+  async function activateIntroSound() {
     if (audioEnabled) return;
 
     try {
@@ -65,13 +73,15 @@ function initIntroExperience() {
 
       await introVideo.play();
 
-      enableSoundBtn.textContent = "✅ Sonido activado";
-      enableSoundBtn.disabled = true;
+      enableSoundBtn.classList.add("hidden");
     } catch (error) {
       console.warn("No se pudo activar sonido en el video:", error);
       audioEnabled = false;
     }
-  });
+  }
+
+  enableSoundBtn.addEventListener("click", activateIntroSound);
+  introVideoWrapper.addEventListener("click", activateIntroSound);
 
   enterBtn.addEventListener("click", () => {
     if (introDismissed) return;

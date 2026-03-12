@@ -44,6 +44,10 @@
   <!-- INTRO VIDEO -->
   <div class="intro-overlay" id="introOverlay">
     <div class="intro-card">
+      <button class="intro-enter-floating" id="enterInvitationBtn" type="button">
+        Entrar ✨
+      </button>
+
       <div class="intro-crown">
         <img src="./img/corona.png" alt="Corona" />
       </div>
@@ -52,34 +56,18 @@
         <img src="./img/texto.gif" alt="Bienvenido al cuento de Evelyn" />
       </div>
 
-      <p class="intro-subtitle">
-        Toca para comenzar esta historia mágica
-      </p>
-
-      <div class="intro-video-wrapper">
+      <div class="intro-video-wrapper" id="introVideoWrapper">
         <video id="introVideo" class="intro-video" playsinline webkit-playsinline preload="auto" muted loop
           poster="./img/img1.jpg">
           <source src="./img/Evelyn Nayely.mp4" type="video/mp4" />
           Tu navegador no soporta video HTML5.
         </video>
-      </div>
 
-      <div class="intro-actions">
-        <button class="btn-primary" id="enableSoundBtn" type="button">
-          🔊 Activar sonido
-        </button>
-
-        <button class="btn-ghost" id="enterInvitationBtn" type="button">
-          Entrar a la invitación ✨
+        <button class="intro-audio-overlay" id="enableSoundBtn" type="button">
+          🔊 Toca el video para escuchar
         </button>
       </div>
-
-      <p class="intro-note">
-        El video y la música funcionan mejor en iPhone y Android después de tocar la pantalla.
-      </p>
     </div>
-
-    <div class="magic-sparkles"></div>
   </div>
 
   <div class="page-background">
