@@ -131,9 +131,10 @@ video {
     #02030a 100%
   );
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 12px;
+  padding: calc(env(safe-area-inset-top, 0px) + 8px) 0
+    calc(env(safe-area-inset-bottom, 0px) + 8px);
   z-index: 30;
 }
 
@@ -150,53 +151,81 @@ video {
 .intro-card {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  min-height: 94vh;
-  max-height: 96vh;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   background:
     linear-gradient(135deg, rgba(127, 175, 166, 0.28), rgba(7, 22, 19, 0.96)),
     radial-gradient(circle at top, rgba(212, 240, 233, 0.18), transparent 60%);
-  border-radius: var(--radius-xl);
-  padding: 8px 12px 18px;
-  border: var(--border-glass);
-  box-shadow: var(--shadow-soft), var(--shadow-gold);
+  border-radius: 0;
+  padding: 18px 0 14px;
+  border: none;
+  box-shadow: none;
   text-align: center;
 }
 
+.intro-enter-floating {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 10;
+  min-height: auto;
+  width: auto;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 155, 255, 0.35);
+  background: rgba(10, 18, 30, 0.78);
+  color: var(--accent-gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.intro-crown {
+  margin-top: 0;
+  padding-top: 4px;
+}
+
 .intro-crown img {
-  width: 62px;
-  margin: -2px auto 2px;
+  width: 58px;
+  margin: 0 auto 6px;
   animation: float 3s ease-in-out infinite;
 }
 
 .intro-title-img {
   text-align: center;
   margin-top: 0;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  padding: 0 70px 0 16px;
 }
 
 .intro-title-img img {
-  max-width: 82%;
-  width: 210px;
+  max-width: 100%;
+  width: 260px;
   margin: 0 auto;
   animation: fadeIn 2s ease-in-out;
 }
 
 .intro-video-wrapper {
-  border-radius: 24px;
+  width: calc(100vw - 28px);
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: 28px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 4px;
   background: #000;
 }
 
 .intro-video {
   width: 100%;
+  height: auto;
+  max-height: none;
   aspect-ratio: 9 / 16;
-  max-height: 72vh;
   object-fit: cover;
+  object-position: center;
   background: #000;
 }
 
