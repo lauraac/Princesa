@@ -150,51 +150,53 @@ video {
 .intro-card {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  max-height: 92vh;
+  max-width: 480px;
+  min-height: 94vh;
+  max-height: 96vh;
   overflow-y: auto;
   overflow-x: hidden;
   background:
-    linear-gradient(135deg, rgba(31, 127, 107, 0.18), rgba(5, 8, 20, 0.95)),
-    radial-gradient(circle at top, rgba(197, 155, 255, 0.15), transparent 60%);
+    linear-gradient(135deg, rgba(127, 175, 166, 0.28), rgba(7, 22, 19, 0.96)),
+    radial-gradient(circle at top, rgba(212, 240, 233, 0.18), transparent 60%);
   border-radius: var(--radius-xl);
-  padding: 14px 14px 16px;
+  padding: 8px 12px 18px;
   border: var(--border-glass);
   box-shadow: var(--shadow-soft), var(--shadow-gold);
   text-align: center;
 }
 
 .intro-crown img {
-  width: 72px;
-  margin: 0 auto 6px;
+  width: 62px;
+  margin: -2px auto 2px;
   animation: float 3s ease-in-out infinite;
 }
 
 .intro-title-img {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 0;
+  margin-bottom: 6px;
 }
 
 .intro-title-img img {
-  max-width: 75%;
-  width: 180px;
+  max-width: 82%;
+  width: 210px;
   margin: 0 auto;
   animation: fadeIn 2s ease-in-out;
 }
 
 .intro-video-wrapper {
-  border-radius: 18px;
+  border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   background: #000;
 }
 
 .intro-video {
   width: 100%;
   aspect-ratio: 9 / 16;
-  max-height: 48vh;
-  object-fit: contain;
+  max-height: 72vh;
+  object-fit: cover;
   background: #000;
 }
 
@@ -546,10 +548,21 @@ video {
   background: rgba(0, 0, 0, 0.18);
 }
 
+.media-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 214, 107, 0.18);
+  background: rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .media-full {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  object-position: center;
 }
 
 /* STORY */
@@ -1048,4 +1061,27 @@ textarea {
   .intro-card {
     padding: 26px 24px 24px;
   }
+}
+.creator-signature {
+  text-align: center;
+  margin-top: 30px;
+  padding: 12px 10px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.creator-signature a {
+  color: rgba(255, 214, 107, 0.75);
+  text-decoration: none;
+}
+
+.whats-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.whats-icon {
+  width: 14px;
+  height: 14px;
 }
