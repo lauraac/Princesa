@@ -432,27 +432,6 @@
               target="_blank" class="detail-link">Ver mapa 🎉</a>
           </article>
 
-          <!-- MUSICA -->
-          <section class="section music-section">
-            <h2 class="section-title">Melodía encantada</h2>
-            <p class="section-text">
-              Activa la música para vivir la experiencia completa.
-            </p>
-
-            <button class="btn-ghost" id="toggleMusicBtn" type="button">
-              🎵 Reproducir música
-            </button>
-
-            <audio id="bgMusic" preload="auto" loop playsinline>
-              <source src="./audio/musica.mp3" type="audio/mpeg" />
-              Tu navegador no soporta audio HTML5.
-            </audio>
-
-            <p class="music-note">
-              En iPhone y Android el audio se activa mejor después de tocar la pantalla.
-            </p>
-          </section>
-
           <!-- MESA DE REGALOS -->
           <section class="section gifts-section">
             <h2 class="section-title">Mesa de regalos</h2>
@@ -606,6 +585,14 @@
               </p>
             </div>
           </section>
+          <audio id="bgMusic" preload="auto" loop playsinline>
+            <source src="./audio/musica.mp3" type="audio/mpeg" />
+            Tu navegador no soporta audio HTML5.
+          </audio>
+
+          <button class="music-floating-btn paused" id="toggleMusicBtn" type="button" aria-label="Controlar música">
+            ♪
+          </button>
           <footer class="creator-signature">
             Invitación digital por
             <a href="https://wa.me/525534633490" target="_blank">

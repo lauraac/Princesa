@@ -56,7 +56,6 @@ function initIntroExperience() {
     if (introDismissed) return;
     introDismissed = true;
 
-    // detener audio y video del intro
     introVideo.pause();
     introVideo.muted = true;
     introVideo.currentTime = 0;
@@ -66,6 +65,10 @@ function initIntroExperience() {
     setTimeout(() => {
       introOverlay.style.display = "none";
     }, 650);
+
+    if (typeof window.startInvitationMusic === "function") {
+      window.startInvitationMusic();
+    }
   }
 
   async function activateIntroSound() {
@@ -136,19 +139,48 @@ function initMusicControls() {
 
   if (!toggleMusicBtn || !bgMusic) return;
 
-  toggleMusicBtn.addEventListener("click", async () => {
+  function setMusicButtonState(isPlaying) {
+    toggleMusicBtn.classList.toggle("playing", isPlaying);
+    toggleMusicBtn.classList.toggle("paused", !isPlaying);
+    toggleMusicBtn.textContent = isPlaying ? "♫" : "♪";
+    toggleMusicBtn.setAttribute(
+      "aria-label",
+      isPlaying ? "Pausar música" : "Reproducir música",
+    );
+  }
+
+  async function playMusic() {
     try {
-      if (bgMusic.paused) {
-        await bgMusic.play();
-        updateMusicButtonState(true);
-      } else {
-        bgMusic.pause();
-        updateMusicButtonState(false);
-      }
+      await bgMusic.play();
+      setMusicButtonState(true);
     } catch (error) {
-      console.error("Error al reproducir la música:", error);
+      console.warn("No se pudo reproducir la música:", error);
+      setMusicButtonState(false);
+    }
+  }
+
+  function pauseMusic() {
+    bgMusic.pause();
+    setMusicButtonState(false);
+  }
+
+  toggleMusicBtn.addEventListener("click", async (event) => {
+    event.stopPropagation();
+
+    if (bgMusic.paused) {
+      await playMusic();
+    } else {
+      pauseMusic();
     }
   });
+
+  bgMusic.addEventListener("play", () => setMusicButtonState(true));
+  bgMusic.addEventListener("pause", () => setMusicButtonState(false));
+
+  setMusicButtonState(false);
+
+  window.startInvitationMusic = playMusic;
+  window.pauseInvitationMusic = pauseMusic;
 }
 
 function updateMusicButtonState(isPlaying) {
@@ -353,10 +385,8 @@ function initInlineVideos() {
   const featuredVideo = document.querySelector(".featured-video");
   if (featuredVideo) {
     featuredVideo.addEventListener("play", () => {
-      const bgMusic = document.getElementById("bgMusic");
-      if (bgMusic && !bgMusic.paused) {
-        bgMusic.pause();
-        updateMusicButtonState(false);
+      if (typeof window.pauseInvitationMusic === "function") {
+        window.pauseInvitationMusic();
       }
     });
   }

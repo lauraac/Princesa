@@ -1175,3 +1175,53 @@ textarea {
   z-index: 10000;
   backdrop-filter: blur(6px);
 }
+
+.music-floating-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10001;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  background: rgba(18, 45, 34, 0.88);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.music-floating-btn:hover {
+  transform: scale(1.06);
+}
+
+.music-floating-btn.playing {
+  animation: musicPulse 1.8s infinite;
+}
+
+.music-floating-btn.paused {
+  opacity: 0.88;
+}
+
+@keyframes musicPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(18, 45, 34, 0.35);
+  }
+  70% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 14px rgba(18, 45, 34, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(18, 45, 34, 0);
+  }
+}
