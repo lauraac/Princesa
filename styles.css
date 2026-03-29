@@ -1175,7 +1175,6 @@ textarea {
   z-index: 10000;
   backdrop-filter: blur(6px);
 }
-
 .music-floating-btn {
   position: fixed;
   right: 18px;
