@@ -52,13 +52,23 @@ function initIntroExperience() {
 
   safePlayVideo(introVideo);
 
+  function closeIntro() {
+    if (introDismissed) return;
+    introDismissed = true;
+
+    introOverlay.classList.add("intro-overlay--hidden");
+
+    setTimeout(() => {
+      introOverlay.style.display = "none";
+    }, 650);
+  }
+
   async function activateIntroSound() {
     if (audioEnabled) return;
 
     try {
       audioEnabled = true;
 
-      // 🔥 ocultar mensaje
       const hint = document.getElementById("tapAudioHint");
       if (hint) hint.style.display = "none";
 
@@ -74,7 +84,6 @@ function initIntroExperience() {
     }
   }
 
-  // Cualquier toque dentro del intro activa audio
   introOverlay.addEventListener("click", async (event) => {
     const clickedEnter = event.target.closest("#enterInvitationBtn");
 
@@ -87,15 +96,11 @@ function initIntroExperience() {
 
   enterBtn.addEventListener("click", (event) => {
     event.stopPropagation();
+    closeIntro();
+  });
 
-    if (introDismissed) return;
-    introDismissed = true;
-
-    introOverlay.classList.add("intro-overlay--hidden");
-
-    setTimeout(() => {
-      introOverlay.style.display = "none";
-    }, 650);
+  introVideo.addEventListener("ended", () => {
+    closeIntro();
   });
 
   document.addEventListener("visibilitychange", () => {
