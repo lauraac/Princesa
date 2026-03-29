@@ -758,6 +758,22 @@ video {
   object-fit: cover;
 }
 
+.featured-video-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  text-align: center;
+  animation: pulseHint 1.5s infinite;
+  cursor: pointer;
+}
+
 /* DETAILS */
 .details-grid {
   display: grid;

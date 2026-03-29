@@ -402,8 +402,32 @@ function initInlineVideos() {
   autoVideos.forEach((video) => observer.observe(video));
 
   const featuredVideo = document.querySelector(".featured-video");
+  const featuredVideoHint = document.getElementById("featuredVideoHint");
 
   if (featuredVideo) {
+    async function enableFeaturedVideoAudio() {
+      try {
+        featuredVideo.muted = false;
+        featuredVideo.volume = 1;
+
+        if (featuredVideoHint) {
+          featuredVideoHint.style.display = "none";
+        }
+
+        await featuredVideo.play();
+      } catch (error) {
+        console.warn("No se pudo activar el audio del video destacado:", error);
+      }
+    }
+
+    // tocar el video activa audio
+    featuredVideo.addEventListener("click", enableFeaturedVideoAudio);
+
+    // tocar el mensaje también activa audio
+    if (featuredVideoHint) {
+      featuredVideoHint.addEventListener("click", enableFeaturedVideoAudio);
+    }
+
     const featuredObserver = new IntersectionObserver(
       async (entries) => {
         for (const entry of entries) {
@@ -424,7 +448,13 @@ function initInlineVideos() {
 
             try {
               featuredVideo.currentTime = 0;
+              featuredVideo.muted = true; // entra en silencio
               featuredVideo.volume = 1;
+
+              if (featuredVideoHint) {
+                featuredVideoHint.style.display = "block";
+              }
+
               await featuredVideo.play();
             } catch (error) {
               console.warn(
@@ -435,6 +465,11 @@ function initInlineVideos() {
           } else {
             featuredVideo.pause();
             featuredVideo.currentTime = 0;
+            featuredVideo.muted = true;
+
+            if (featuredVideoHint) {
+              featuredVideoHint.style.display = "block";
+            }
 
             if (
               musicWasPlayingBeforeFeaturedVideo &&
