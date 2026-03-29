@@ -664,7 +664,7 @@ video {
 
 .story-track {
   display: flex;
-  transition: transform 0.35s ease;
+  transition: transform 0.7s ease-in-out;
   will-change: transform;
 }
 

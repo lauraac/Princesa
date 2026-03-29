@@ -298,6 +298,8 @@ function initStorySlider() {
   if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
 
   const slides = Array.from(track.children);
+  let autoSlideInterval = null;
+  let resumeTimeout = null;
 
   slides.forEach((_, index) => {
     const dot = document.createElement("button");
@@ -307,6 +309,7 @@ function initStorySlider() {
     dot.addEventListener("click", () => {
       storyIndex = index;
       updateStorySlider();
+      pauseAndResumeAutoSlide();
     });
 
     dotsContainer.appendChild(dot);
@@ -315,11 +318,13 @@ function initStorySlider() {
   prevBtn.addEventListener("click", () => {
     storyIndex = storyIndex > 0 ? storyIndex - 1 : slides.length - 1;
     updateStorySlider();
+    pauseAndResumeAutoSlide();
   });
 
   nextBtn.addEventListener("click", () => {
     storyIndex = storyIndex < slides.length - 1 ? storyIndex + 1 : 0;
     updateStorySlider();
+    pauseAndResumeAutoSlide();
   });
 
   let startX = 0;
@@ -329,6 +334,7 @@ function initStorySlider() {
     "touchstart",
     (e) => {
       startX = e.touches[0].clientX;
+      stopAutoSlide();
     },
     { passive: true },
   );
@@ -355,6 +361,7 @@ function initStorySlider() {
 
     startX = 0;
     currentX = 0;
+    pauseAndResumeAutoSlide();
   });
 
   function updateStorySlider() {
@@ -368,7 +375,39 @@ function initStorySlider() {
     updateCarouselVideos();
   }
 
-  updateCarouselVideos();
+  function goToNextSlide() {
+    storyIndex = storyIndex < slides.length - 1 ? storyIndex + 1 : 0;
+    updateStorySlider();
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+      goToNextSlide();
+    }, 4500);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
+  }
+
+  function pauseAndResumeAutoSlide() {
+    stopAutoSlide();
+
+    if (resumeTimeout) {
+      clearTimeout(resumeTimeout);
+    }
+
+    resumeTimeout = setTimeout(() => {
+      startAutoSlide();
+    }, 6000);
+  }
+
+  updateStorySlider();
+  startAutoSlide();
 }
 
 // VIDEOS EN CARRUSEL Y EN HISTORIA
