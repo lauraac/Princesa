@@ -1093,3 +1093,39 @@ textarea {
   width: 14px;
   height: 14px;
 }
+
+.tap-audio-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+
+  padding: 12px 20px;
+  border-radius: 25px;
+
+  font-size: 14px;
+  text-align: center;
+
+  z-index: 5;
+  pointer-events: none; /* 👈 importante para que no bloquee el click */
+
+  animation: pulseHint 1.5s infinite;
+}
+
+@keyframes pulseHint {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
