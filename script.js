@@ -56,6 +56,11 @@ function initIntroExperience() {
     if (introDismissed) return;
     introDismissed = true;
 
+    // detener audio y video del intro
+    introVideo.pause();
+    introVideo.muted = true;
+    introVideo.currentTime = 0;
+
     introOverlay.classList.add("intro-overlay--hidden");
 
     setTimeout(() => {
@@ -87,9 +92,7 @@ function initIntroExperience() {
   introOverlay.addEventListener("click", async (event) => {
     const clickedEnter = event.target.closest("#enterInvitationBtn");
 
-    if (clickedEnter) {
-      return;
-    }
+    if (clickedEnter) return;
 
     await activateIntroSound();
   });
