@@ -1207,3 +1207,7 @@ textarea {
 .music-floating-btn.paused {
   opacity: 0.88;
 }
+
+.hidden-music-btn {
+  display: none !important;
+}
