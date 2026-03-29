@@ -1,6 +1,6 @@
 const INVITATION_CONFIG = {
   quinceanera: "Evelyn Nayely Alfonso González",
-  eventDate: "2025-10-12T19:00:00",
+  eventDate: "2026-05-09T16:00:00",
   drivePhotosUrl: "https://drive.google.com/",
   driveAlbumUrl: "https://drive.google.com/",
   rsvpFormUrl: "https://docs.google.com/forms/",

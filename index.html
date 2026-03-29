@@ -89,11 +89,10 @@
         </p>
 
         <div class="hero-badge">
-          <p class="hero-badge-title">Celebración especial</p>
           <p class="hero-badge-date" id="eventShortInfo">
-            12 de Octubre · 7:00 PM
+            9 de mayo · 4:00 PM
           </p>
-          <p class="hero-badge-place">Salón de eventos</p>
+          <p class="hero-badge-place">Aldea de los Reyes</p>
         </div>
 
         <div class="hero-actions">
@@ -189,7 +188,7 @@
         </blockquote>
 
         <div class="story-gif-frame">
-          <img src="./img/xvevel.jpeg" alt="Historia mágica" class="story-gif" />
+          <img src="./img/nayeli.png" alt="Historia mágica" class="story-gif" />
         </div>
       </section>
 
@@ -385,237 +384,234 @@
       <!-- DETALLES -->
       <section class="section details-section" id="detalles">
         <h2 class="section-title">Detalles del evento</h2>
+        <p class="section-text">
+          La misa se celebrará el 9 de mayo a las 4:00 de la tarde en la
+          Capilla de los Santos Reyes, ubicada en Calle Sor Juana Inés de la Cruz S/N,
+          Aldea de los Reyes.
+        </p>
 
+        <p class="section-text">
+          La recepción se llevará a cabo en Calle 5 de Febrero #4,
+          Delegación Aldea de los Reyes.
+        </p>
         <div class="details-grid">
           <article class="detail-card">
             <h3 class="detail-title">Fecha</h3>
-            <p class="detail-main">Sábado · 12 de Octubre 2025</p>
+            <p class="detail-main">9 de mayo</p>
             <p class="detail-note">Guarda esta fecha en tu corazón.</p>
           </article>
 
           <article class="detail-card">
             <h3 class="detail-title">Hora</h3>
-            <p class="detail-main">7:00 PM</p>
-            <p class="detail-note">Te esperamos puntualmente.</p>
+            <p class="detail-main">4:00 PM</p>
+            <p class="detail-note">La misa será a las 4 de la tarde.</p>
           </article>
 
           <article class="detail-card">
             <h3 class="detail-title">Iglesia</h3>
-            <p class="detail-main">Templo / Iglesia</p>
-            <p class="detail-note">Dirección pendiente por actualizar.</p>
-            <a href="#" target="_blank" class="detail-link">Ver mapa ⛪</a>
+            <p class="detail-main">Capilla de los Santos Reyes</p>
+            <p class="detail-note">
+              Calle Sor Juana Inés de la Cruz S/N, Aldea de los Reyes.
+            </p>
+            <a href="https://www.google.com/maps/place/Capilla+de+los+Santos+Reyes/@19.1597416,-98.781619,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce3cce4e8ad949:0x1ba6e103b95aed1a!8m2!3d19.1597366!4d-98.7790441!16s%2Fg%2F1hhgt0wkg?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank" class="detail-link">Ver mapa ⛪</a>
           </article>
 
           <article class="detail-card">
             <h3 class="detail-title">Recepción</h3>
-            <p class="detail-main">Salón de eventos</p>
-            <p class="detail-note">Dirección pendiente por actualizar.</p>
-            <a href="#" target="_blank" class="detail-link">Ver mapa 🎉</a>
-          </article>
-
-          <article class="detail-card">
-            <h3 class="detail-title">Código de vestimenta</h3>
-            <p class="detail-main">Formal / elegante</p>
+            <p class="detail-main">Recepción en Aldea de los Reyes</p>
             <p class="detail-note">
-              Inspiración sugerida: verde esmeralda, dorado, crema o tonos suaves.
+              Calle 5 de Febrero #4, Delegación Aldea de los Reyes.
             </p>
+            <a href="https://www.google.com/maps/search/La+recepci%C3%B3n+es+Calle+5+de+febrero+%234+Delegaci%C3%B3n+Aldea+de+los+Reyes/@19.1494198,-98.7857613,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank" class="detail-link">Ver mapa 🎉</a>
           </article>
 
-          <article class="detail-card">
-            <h3 class="detail-title">Tema</h3>
-            <p class="detail-main">La Princesa y el Sapo</p>
-            <p class="detail-note">
-              Una noche inspirada en magia, naturaleza, brillo y elegancia.
+          <!-- MUSICA -->
+          <section class="section music-section">
+            <h2 class="section-title">Melodía encantada</h2>
+            <p class="section-text">
+              Activa la música para vivir la experiencia completa.
             </p>
-          </article>
-        </div>
-      </section>
 
-      <!-- MUSICA -->
-      <section class="section music-section">
-        <h2 class="section-title">Melodía encantada</h2>
-        <p class="section-text">
-          Activa la música para vivir la experiencia completa.
-        </p>
+            <button class="btn-ghost" id="toggleMusicBtn" type="button">
+              🎵 Reproducir música
+            </button>
 
-        <button class="btn-ghost" id="toggleMusicBtn" type="button">
-          🎵 Reproducir música
-        </button>
+            <audio id="bgMusic" preload="auto" loop playsinline>
+              <source src="./audio/musica.mp3" type="audio/mpeg" />
+              Tu navegador no soporta audio HTML5.
+            </audio>
 
-        <audio id="bgMusic" preload="auto" loop playsinline>
-          <source src="./audio/musica.mp3" type="audio/mpeg" />
-          Tu navegador no soporta audio HTML5.
-        </audio>
-
-        <p class="music-note">
-          En iPhone y Android el audio se activa mejor después de tocar la pantalla.
-        </p>
-      </section>
-
-      <!-- MESA DE REGALOS -->
-      <section class="section gifts-section">
-        <h2 class="section-title">Mesa de regalos</h2>
-        <p class="section-text">
-          Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo,
-          puedes hacerlo en nuestra mesa de regalos o con sobre.
-        </p>
-
-        <div class="gift-grid">
-          <article class="gift-card">
-            <h3 class="gift-title">Sobres de dinero</h3>
-            <p class="gift-text">
-              Habrá un espacio especial el día del evento para recibir tu regalo con cariño.
+            <p class="music-note">
+              En iPhone y Android el audio se activa mejor después de tocar la pantalla.
             </p>
-          </article>
+          </section>
 
-          <article class="gift-card">
-            <h3 class="gift-title">Mesa de regalos</h3>
-            <p class="gift-text">
-              Muy pronto podrás encontrar aquí el enlace de la mesa de regalos.
+          <!-- MESA DE REGALOS -->
+          <section class="section gifts-section">
+            <h2 class="section-title">Mesa de regalos</h2>
+            <p class="section-text">
+              Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo,
+              puedes hacerlo en nuestra mesa de regalos o con sobre.
             </p>
-            <a href="#" class="detail-link">Ver mesa de regalos 🎁</a>
-          </article>
-        </div>
-      </section>
 
-      <!-- DRIVE -->
-      <section class="section drive-section">
-        <h2 class="section-title">Comparte tus recuerdos</h2>
-        <p class="section-text">
-          Después del evento podrás subir tus fotos y ver el álbum compartido.
-        </p>
+            <div class="gift-grid">
+              <article class="gift-card">
+                <h3 class="gift-title">Sobres de dinero</h3>
+                <p class="gift-text">
+                  Habrá un espacio especial el día del evento para recibir tu regalo con cariño.
+                </p>
+              </article>
 
-        <div class="gift-actions">
-          <a href="https://drive.google.com/" target="_blank" class="btn-primary btn-full" id="driveUploadBtn">
-            Subir fotos a Drive 📷
-          </a>
-
-          <a href="https://drive.google.com/" target="_blank" class="btn-ghost btn-full" id="driveAlbumBtn">
-            Ver álbum compartido ✨
-          </a>
-        </div>
-      </section>
-
-      <!-- ITINERARIO -->
-      <section class="section timeline-section">
-        <h2 class="section-title">Itinerario mágico</h2>
-
-        <ol class="timeline">
-          <li class="timeline-item">
-            <span class="timeline-time">7:00 PM</span>
-            <div class="timeline-content">
-              <h3>Recepción</h3>
-              <p>Bienvenida de invitados y fotos especiales.</p>
+              <article class="gift-card">
+                <h3 class="gift-title">Mesa de regalos</h3>
+                <p class="gift-text">
+                  Muy pronto podrás encontrar aquí el enlace de la mesa de regalos.
+                </p>
+                <a href="#" class="detail-link">Ver mesa de regalos 🎁</a>
+              </article>
             </div>
-          </li>
+          </section>
 
-          <li class="timeline-item">
-            <span class="timeline-time">8:00 PM</span>
-            <div class="timeline-content">
-              <h3>Ceremonia</h3>
-              <p>Un momento especial para celebrar esta nueva etapa.</p>
+          <!-- DRIVE -->
+          <section class="section drive-section">
+            <h2 class="section-title">Comparte tus recuerdos</h2>
+            <p class="section-text">
+              Después del evento podrás subir tus fotos y ver el álbum compartido.
+            </p>
+
+            <div class="gift-actions">
+              <a href="https://drive.google.com/" target="_blank" class="btn-primary btn-full" id="driveUploadBtn">
+                Subir fotos a Drive 📷
+              </a>
+
+              <a href="https://drive.google.com/" target="_blank" class="btn-ghost btn-full" id="driveAlbumBtn">
+                Ver álbum compartido ✨
+              </a>
             </div>
-          </li>
+          </section>
 
-          <li class="timeline-item">
-            <span class="timeline-time">9:00 PM</span>
-            <div class="timeline-content">
-              <h3>Cena</h3>
-              <p>Una noche llena de amor, alegría y bendiciones.</p>
+          <!-- ITINERARIO -->
+          <section class="section timeline-section">
+            <h2 class="section-title">Itinerario mágico</h2>
+
+            <ol class="timeline">
+              <li class="timeline-item">
+                <span class="timeline-time">4:00 PM</span>
+                <div class="timeline-content">
+                  <h3>Misa</h3>
+                  <p>Ceremonia religiosa en la Capilla de los Santos Reyes.</p>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-time">6:00 PM</span>
+                <div class="timeline-content">
+                  <h3>Recepción</h3>
+                  <p>Bienvenida de invitados y celebración en Calle 5 de Febrero #4.</p>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-time">7:00 PM</span>
+                <div class="timeline-content">
+                  <h3>Cena</h3>
+                  <p>Compartiremos una noche muy especial llena de alegría.</p>
+                </div>
+              </li>
+
+              <li class="timeline-item">
+                <span class="timeline-time">8:30 PM</span>
+                <div class="timeline-content">
+                  <h3>Baile</h3>
+                  <p>Seguiremos celebrando con música, magia y mucha emoción.</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- CONFIRMACION -->
+          <section class="section rsvp-section" id="confirmacion">
+            <h2 class="section-title">Confirma tu asistencia</h2>
+            <p class="section-text">
+              Tu presencia hará aún más especial esta noche.
+            </p>
+
+            <form class="rsvp-form" id="rsvpForm">
+              <div class="form-group">
+                <label for="guestName">Nombre completo</label>
+                <input type="text" id="guestName" name="guestName" placeholder="Escribe tu nombre aquí" required />
+              </div>
+
+              <div class="form-group">
+                <label for="guestCount">Número de acompañantes</label>
+                <input type="number" id="guestCount" name="guestCount" min="0" max="10" placeholder="Ej. 1, 2, 3..."
+                  required />
+              </div>
+
+              <div class="form-group">
+                <p class="form-label">¿Podrás asistir?</p>
+                <div class="form-radio-group">
+                  <label class="radio-pill">
+                    <input type="radio" name="attendance" value="si" required />
+                    <span>Sí, con mucho gusto ✨</span>
+                  </label>
+
+                  <label class="radio-pill">
+                    <input type="radio" name="attendance" value="no" required />
+                    <span>No podré asistir 💌</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Mensaje especial (opcional)</label>
+                <textarea id="message" name="message" rows="3"
+                  placeholder="Escribe aquí un deseo o mensaje bonito."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary btn-full">
+                Enviar confirmación
+              </button>
+
+              <a href="https://docs.google.com/forms/" target="_blank" class="btn-ghost btn-full secondary-link"
+                id="googleFormBtn">
+                Confirmar también por formulario 📋
+              </a>
+
+              <p class="rsvp-note">
+                Aquí después puedes conectar Google Forms, Sheets o Apps Script.
+              </p>
+
+              <p class="rsvp-success" id="rsvpSuccessMsg"></p>
+            </form>
+          </section>
+
+          <!-- DESPEDIDA -->
+          <section class="section farewell-section">
+            <div class="farewell-card">
+              <div class="intro-crown">
+                <img src="./img/corona.png" alt="Corona" />
+              </div>
+              <h2 class="farewell-title">Gracias por ser parte de este cuento</h2>
+              <p class="farewell-text">
+                Cada invitado es una estrella en esta historia mágica.
+                ¡Te esperamos con mucho cariño!
+              </p>
             </div>
-          </li>
-
-          <li class="timeline-item">
-            <span class="timeline-time">10:30 PM</span>
-            <div class="timeline-content">
-              <h3>Baile</h3>
-              <p>La magia continúa con música, emociones y celebración.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <!-- CONFIRMACION -->
-      <section class="section rsvp-section" id="confirmacion">
-        <h2 class="section-title">Confirma tu asistencia</h2>
-        <p class="section-text">
-          Tu presencia hará aún más especial esta noche.
-        </p>
-
-        <form class="rsvp-form" id="rsvpForm">
-          <div class="form-group">
-            <label for="guestName">Nombre completo</label>
-            <input type="text" id="guestName" name="guestName" placeholder="Escribe tu nombre aquí" required />
-          </div>
-
-          <div class="form-group">
-            <label for="guestCount">Número de acompañantes</label>
-            <input type="number" id="guestCount" name="guestCount" min="0" max="10" placeholder="Ej. 1, 2, 3..."
-              required />
-          </div>
-
-          <div class="form-group">
-            <p class="form-label">¿Podrás asistir?</p>
-            <div class="form-radio-group">
-              <label class="radio-pill">
-                <input type="radio" name="attendance" value="si" required />
-                <span>Sí, con mucho gusto ✨</span>
-              </label>
-
-              <label class="radio-pill">
-                <input type="radio" name="attendance" value="no" required />
-                <span>No podré asistir 💌</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Mensaje especial (opcional)</label>
-            <textarea id="message" name="message" rows="3"
-              placeholder="Escribe aquí un deseo o mensaje bonito."></textarea>
-          </div>
-
-          <button type="submit" class="btn-primary btn-full">
-            Enviar confirmación
-          </button>
-
-          <a href="https://docs.google.com/forms/" target="_blank" class="btn-ghost btn-full secondary-link"
-            id="googleFormBtn">
-            Confirmar también por formulario 📋
-          </a>
-
-          <p class="rsvp-note">
-            Aquí después puedes conectar Google Forms, Sheets o Apps Script.
-          </p>
-
-          <p class="rsvp-success" id="rsvpSuccessMsg"></p>
-        </form>
-      </section>
-
-      <!-- DESPEDIDA -->
-      <section class="section farewell-section">
-        <div class="farewell-card">
-          <div class="intro-crown">
-            <img src="./img/corona.png" alt="Corona" />
-          </div>
-          <h2 class="farewell-title">Gracias por ser parte de este cuento</h2>
-          <p class="farewell-text">
-            Cada invitado es una estrella en esta historia mágica.
-            ¡Te esperamos con mucho cariño!
-          </p>
-        </div>
-      </section>
-      <footer class="creator-signature">
-        Invitación digital por
-        <a href="https://wa.me/525534633490" target="_blank">
-          Laura Alfonso
-        </a>
-        •
-        <a href="https://wa.me/525534633490" target="_blank" class="whats-link">
-          <img src="./img/social.png" alt="WhatsApp" class="whats-icon">
-          Pide la tuya
-        </a>
-      </footer>
+          </section>
+          <footer class="creator-signature">
+            Invitación digital por
+            <a href="https://wa.me/525534633490" target="_blank">
+              Laura Alfonso
+            </a>
+            •
+            <a href="https://wa.me/525534633490" target="_blank" class="whats-link">
+              <img src="./img/social.png" alt="WhatsApp" class="whats-icon">
+              Pide la tuya
+            </a>
+          </footer>
 
 
     </main>
