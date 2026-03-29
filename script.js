@@ -64,11 +64,16 @@ function initIntroExperience() {
 
     setTimeout(() => {
       introOverlay.style.display = "none";
-    }, 650);
 
-    if (typeof window.startInvitationMusic === "function") {
-      window.startInvitationMusic();
-    }
+      const toggleMusicBtn = document.getElementById("toggleMusicBtn");
+      if (toggleMusicBtn) {
+        toggleMusicBtn.classList.remove("hidden-music-btn");
+      }
+
+      if (typeof window.startInvitationMusic === "function") {
+        window.startInvitationMusic();
+      }
+    }, 650);
   }
 
   async function activateIntroSound() {
