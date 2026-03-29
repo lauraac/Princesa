@@ -6,10 +6,11 @@ const INVITATION_CONFIG = {
   rsvpFormUrl: "https://docs.google.com/forms/",
   desktopMinWidth: 900,
 };
-
 let audioEnabled = false;
 let introDismissed = false;
 let storyIndex = 0;
+let musicWasPlayingBeforeFeaturedVideo = false;
+let userPausedMusicManually = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   initMobileOnlyGate();
@@ -154,28 +155,36 @@ function initMusicControls() {
     );
   }
 
-  async function playMusic() {
+  async function playMusic(fromAuto = false) {
     try {
       await bgMusic.play();
       setMusicButtonState(true);
+
+      if (!fromAuto) {
+        userPausedMusicManually = false;
+      }
     } catch (error) {
       console.warn("No se pudo reproducir la música:", error);
       setMusicButtonState(false);
     }
   }
 
-  function pauseMusic() {
+  function pauseMusic(fromAuto = false) {
     bgMusic.pause();
     setMusicButtonState(false);
+
+    if (!fromAuto) {
+      userPausedMusicManually = true;
+    }
   }
 
   toggleMusicBtn.addEventListener("click", async (event) => {
     event.stopPropagation();
 
     if (bgMusic.paused) {
-      await playMusic();
+      await playMusic(false);
     } else {
-      pauseMusic();
+      pauseMusic(false);
     }
   });
 
@@ -184,8 +193,10 @@ function initMusicControls() {
 
   setMusicButtonState(false);
 
-  window.startInvitationMusic = playMusic;
-  window.pauseInvitationMusic = pauseMusic;
+  window.startInvitationMusic = () => playMusic(true);
+  window.pauseInvitationMusic = () => pauseMusic(true);
+  window.isInvitationMusicPlaying = () => !bgMusic.paused;
+  window.wasMusicPausedManually = () => userPausedMusicManually;
 }
 
 function updateMusicButtonState(isPlaying) {
@@ -373,7 +384,10 @@ function initInlineVideos() {
       entries.forEach((entry) => {
         const media = entry.target;
 
-        if (media.tagName === "VIDEO") {
+        if (
+          media.tagName === "VIDEO" &&
+          media.classList.contains("inline-story-video")
+        ) {
           if (entry.isIntersecting) {
             safePlayInlineVideo(media);
           } else {
@@ -388,15 +402,59 @@ function initInlineVideos() {
   autoVideos.forEach((video) => observer.observe(video));
 
   const featuredVideo = document.querySelector(".featured-video");
+
   if (featuredVideo) {
-    featuredVideo.addEventListener("play", () => {
-      if (typeof window.pauseInvitationMusic === "function") {
-        window.pauseInvitationMusic();
-      }
-    });
+    const featuredObserver = new IntersectionObserver(
+      async (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            if (typeof window.isInvitationMusicPlaying === "function") {
+              musicWasPlayingBeforeFeaturedVideo =
+                window.isInvitationMusicPlaying();
+            } else {
+              musicWasPlayingBeforeFeaturedVideo = false;
+            }
+
+            if (
+              musicWasPlayingBeforeFeaturedVideo &&
+              typeof window.pauseInvitationMusic === "function"
+            ) {
+              window.pauseInvitationMusic();
+            }
+
+            try {
+              featuredVideo.currentTime = 0;
+              featuredVideo.volume = 1;
+              await featuredVideo.play();
+            } catch (error) {
+              console.warn(
+                "El navegador bloqueó la reproducción automática con audio:",
+                error,
+              );
+            }
+          } else {
+            featuredVideo.pause();
+            featuredVideo.currentTime = 0;
+
+            if (
+              musicWasPlayingBeforeFeaturedVideo &&
+              typeof window.wasMusicPausedManually === "function" &&
+              !window.wasMusicPausedManually() &&
+              typeof window.startInvitationMusic === "function"
+            ) {
+              window.startInvitationMusic();
+            }
+
+            musicWasPlayingBeforeFeaturedVideo = false;
+          }
+        }
+      },
+      { threshold: 0.6 },
+    );
+
+    featuredObserver.observe(featuredVideo);
   }
 }
-
 async function safePlayInlineVideo(videoEl) {
   if (!videoEl) return;
 
