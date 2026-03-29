@@ -58,6 +58,10 @@ function initIntroExperience() {
     try {
       audioEnabled = true;
 
+      // 🔥 ocultar mensaje
+      const hint = document.getElementById("tapAudioHint");
+      if (hint) hint.style.display = "none";
+
       introVideo.pause();
       introVideo.currentTime = 0;
       introVideo.muted = false;
