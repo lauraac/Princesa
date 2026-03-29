@@ -1129,3 +1129,49 @@ textarea {
     opacity: 1;
   }
 }
+
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 9999;
+}
+
+.intro-card {
+  width: 100%;
+  height: 100%;
+}
+
+.intro-video-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 esto es clave */
+}
+
+.enter-btn-corner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  z-index: 10000;
+  backdrop-filter: blur(6px);
+}
