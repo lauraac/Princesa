@@ -12,14 +12,14 @@
   <meta property="og:title" content="Invitación XV de Evelyn Nayely Alfonso González ✨" />
   <meta property="og:description"
     content="Acompáñanos a celebrar una noche mágica inspirada en La Princesa y el Sapo." />
-  <meta property="og:image" content="https://lauraac.github.io/Princesa/img/portada.jpg" />
+  <meta property="og:image" content="https://lauraac.github.io/Princesa/img/portada.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://lauraac.github.io/princesa-y-sapo/" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Invitación XV de Evelyn Nayely Alfonso González" />
   <meta name="twitter:description" content="Una noche mágica llena de brillo, sueños y encanto." />
-  <meta name="twitter:image" content="https://lauraac.github.io/Princesa/img/portada.jpg" />
+  <meta name="twitter:image" content="https://lauraac.github.io/Princesa/img/portada.png" />
 
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js" defer></script>
@@ -471,18 +471,38 @@
           </section>
 
           <!-- DRIVE -->
-          <section class="section drive-section">
+          <section class="section drive-section" id="recuerdos">
             <h2 class="section-title">Comparte tus recuerdos</h2>
             <p class="section-text">
-              Después del evento podrás subir tus fotos y ver el álbum compartido.
+              Toma una foto o sube tus mejores recuerdos del evento. ✨
             </p>
 
-            <div class="gift-actions">
-              <a href="https://drive.google.com/" target="_blank" class="btn-primary btn-full" id="driveUploadBtn">
-                Subir fotos a Drive 📷
-              </a>
+            <form id="uploadMemoryForm" class="rsvp-form">
+              <div class="form-group">
+                <label for="memoryName">Tu nombre (opcional)</label>
+                <input type="text" id="memoryName" name="memoryName" placeholder="Ej. Tía Lupita" />
+              </div>
 
-              <a href="https://drive.google.com/" target="_blank" class="btn-ghost btn-full" id="driveAlbumBtn">
+              <div class="form-group">
+                <label for="memoryFile">Sube una foto o video</label>
+                <input type="file" id="memoryFile" name="memoryFile" accept="image/*,video/*" capture="environment"
+                  required />
+              </div>
+
+              <button type="submit" class="btn-primary btn-full">
+                Enviar recuerdo 📷
+              </button>
+
+              <p class="rsvp-note">
+                Puedes tomar la foto al momento o elegir una desde tu galería.
+              </p>
+
+              <p class="rsvp-success" id="uploadMemoryMsg"></p>
+            </form>
+
+            <div class="gift-actions">
+              <a href="https://drive.google.com/drive/folders/1g-7sus_6rImOz-gsxFt6hrd6fwnzKg2v" target="_blank"
+                class="btn-ghost btn-full" id="driveAlbumBtn">
                 Ver álbum compartido ✨
               </a>
             </div>

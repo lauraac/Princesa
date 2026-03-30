@@ -1,12 +1,12 @@
 const INVITATION_CONFIG = {
   quinceanera: "Evelyn Nayely Alfonso González",
   eventDate: "2026-05-09T16:00:00",
-  drivePhotosUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLSclpYzwatjdjV2MGvyggGbKQXWrQgs4_MIM3cKKfL55Yq44hw/viewform",
+  drivePhotosUrl: "",
   driveAlbumUrl:
     "https://drive.google.com/drive/folders/1g-7sus_6rImOz-gsxFt6hrd6fwnzKg2v",
   rsvpFormUrl: "https://docs.google.com/forms/",
   desktopMinWidth: 900,
+  uploadScriptUrl: "AQUI_VA_TU_WEB_APP_URL",
 };
 let audioEnabled = false;
 let introDismissed = false;
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCountdown();
   initMusicControls();
   initRSVPForm();
+  initMemoryUploadForm();
   initStorySlider();
   initInlineVideos();
   initMagicStars();
@@ -289,7 +290,76 @@ function initRSVPForm() {
     console.log("RSVP guardado localmente:", payload);
   });
 }
+function initMemoryUploadForm() {
+  const form = document.getElementById("uploadMemoryForm");
+  const fileInput = document.getElementById("memoryFile");
+  const nameInput = document.getElementById("memoryName");
+  const msg = document.getElementById("uploadMemoryMsg");
 
+  if (!form || !fileInput || !msg) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const file = fileInput.files?.[0];
+    const guestName = nameInput?.value?.trim() || "Invitado";
+
+    if (!file) {
+      msg.style.display = "block";
+      msg.textContent = "Selecciona una foto o video antes de enviar.";
+      return;
+    }
+
+    msg.style.display = "block";
+    msg.textContent = "Subiendo recuerdo... ⏳";
+
+    try {
+      const base64 = await fileToBase64(file);
+
+      const payload = {
+        fileName: file.name,
+        mimeType: file.type,
+        guestName,
+        base64Data: base64,
+      };
+
+      const response = await fetch(INVITATION_CONFIG.uploadScriptUrl, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        msg.textContent = "¡Gracias! Tu recuerdo se subió correctamente ✨";
+        form.reset();
+      } else {
+        msg.textContent = "No se pudo subir el archivo. Intenta de nuevo.";
+      }
+    } catch (error) {
+      console.error("Error subiendo recuerdo:", error);
+      msg.textContent = "Ocurrió un error al subir el archivo.";
+    }
+  });
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const result = reader.result;
+      const base64 = String(result).split(",")[1];
+      resolve(base64);
+    };
+
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 // CARRUSEL
 function initStorySlider() {
   const track = document.getElementById("storyTrack");
