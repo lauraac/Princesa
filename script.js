@@ -12,6 +12,7 @@ const INVITATION_CONFIG = {
     "https://script.google.com/macros/s/AKfycbxSfMgXZCWWCPOFU5_kb1JtWanOVeNovghtt19BLb_nCPgLLr0_H5rECZOrRQlnDuQ/exec",
 
   // SCRIPT DE RSVP / SHEET
+
   rsvpScriptUrl:
     "https://script.google.com/macros/s/AKfycbzurq_hZZbCmc9ZpcfiQ_TOqnK9kAsvL1KA9dgHqV642y5zMB0AkPFru9BFuMU1XRuF3A/exec",
 };
@@ -282,7 +283,7 @@ function initRSVPForm() {
     };
 
     rsvpSuccessMsg.style.display = "block";
-    rsvpSuccessMsg.textContent = "Enviando confirmación... ⏳";
+    rsvpSuccessMsg.textContent = `Error al enviar: ${error.message}`;
 
     try {
       const response = await fetch(INVITATION_CONFIG.rsvpScriptUrl, {
@@ -304,7 +305,8 @@ function initRSVPForm() {
 
         rsvpForm.reset();
       } else {
-        rsvpSuccessMsg.textContent = `No se pudo guardar tu confirmación: ${result.error || "error desconocido"}`;
+        console.error("Respuesta RSVP:", result);
+        rsvpSuccessMsg.textContent = `No se pudo guardar: ${result.error || "error desconocido"}`;
       }
     } catch (error) {
       console.error("Error guardando RSVP:", error);
