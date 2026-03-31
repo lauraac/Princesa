@@ -8,6 +8,9 @@ const INVITATION_CONFIG = {
   desktopMinWidth: 900,
   uploadScriptUrl:
     "https://script.google.com/macros/s/AKfycbxSfMgXZCWWCPOFU5_kb1JtWanOVeNovghtt19BLb_nCPgLLr0_H5rECZOrRQlnDuQ/exec",
+  // ESTE nuevo será para confirmación
+  rsvpScriptUrl:
+    "https://script.google.com/macros/s/AKfycbzurq_hZZbCmc9ZpcfiQ_TOqnK9kAsvL1KA9dgHqV642y5zMB0AkPFru9BFuMU1XRuF3A/exec",
 };
 let audioEnabled = false;
 let introDismissed = false;
@@ -258,7 +261,7 @@ function initRSVPForm() {
 
   if (!rsvpForm || !rsvpSuccessMsg) return;
 
-  rsvpForm.addEventListener("submit", (e) => {
+  rsvpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(rsvpForm);
@@ -275,20 +278,37 @@ function initRSVPForm() {
       createdAt: new Date().toISOString(),
     };
 
-    const saved = JSON.parse(localStorage.getItem("xv_rsvp_list") || "[]");
-    saved.push(payload);
-    localStorage.setItem("xv_rsvp_list", JSON.stringify(saved));
-
-    if (attendance === "si") {
-      rsvpSuccessMsg.textContent = `¡Gracias, ${guestName}! ✨ Tu confirmación fue registrada.`;
-    } else {
-      rsvpSuccessMsg.textContent = `Gracias por avisarnos, ${guestName}. 💌`;
-    }
-
     rsvpSuccessMsg.style.display = "block";
-    rsvpForm.reset();
+    rsvpSuccessMsg.textContent = "Enviando confirmación... ⏳";
 
-    console.log("RSVP guardado localmente:", payload);
+    try {
+      const response = await fetch(INVITATION_CONFIG.rsvpScriptUrl, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+      });
+
+      const result = await response.json();
+
+      if (result.ok) {
+        if (attendance === "si") {
+          rsvpSuccessMsg.textContent = `¡Gracias, ${guestName}! ✨ Tu confirmación fue registrada.`;
+        } else {
+          rsvpSuccessMsg.textContent = `Gracias por avisarnos, ${guestName}. 💌`;
+        }
+
+        rsvpForm.reset();
+      } else {
+        rsvpSuccessMsg.textContent =
+          "No se pudo guardar tu confirmación. Intenta de nuevo.";
+      }
+    } catch (error) {
+      console.error("Error guardando RSVP:", error);
+      rsvpSuccessMsg.textContent =
+        "Ocurrió un error al enviar tu confirmación.";
+    }
   });
 }
 function initMemoryUploadForm() {
