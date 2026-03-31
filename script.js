@@ -6,9 +6,12 @@ const INVITATION_CONFIG = {
     "https://drive.google.com/drive/folders/1g-7sus_6rImOz-gsxFt6hrd6fwnzKg2v",
   rsvpFormUrl: "https://docs.google.com/forms/",
   desktopMinWidth: 900,
+
+  // SCRIPT DE FOTOS
   uploadScriptUrl:
     "https://script.google.com/macros/s/AKfycbxSfMgXZCWWCPOFU5_kb1JtWanOVeNovghtt19BLb_nCPgLLr0_H5rECZOrRQlnDuQ/exec",
-  // ESTE nuevo será para confirmación
+
+  // SCRIPT DE RSVP / SHEET
   rsvpScriptUrl:
     "https://script.google.com/macros/s/AKfycbzurq_hZZbCmc9ZpcfiQ_TOqnK9kAsvL1KA9dgHqV642y5zMB0AkPFru9BFuMU1XRuF3A/exec",
 };
@@ -301,8 +304,7 @@ function initRSVPForm() {
 
         rsvpForm.reset();
       } else {
-        rsvpSuccessMsg.textContent =
-          "No se pudo guardar tu confirmación. Intenta de nuevo.";
+        rsvpSuccessMsg.textContent = `No se pudo guardar tu confirmación: ${result.error || "error desconocido"}`;
       }
     } catch (error) {
       console.error("Error guardando RSVP:", error);
