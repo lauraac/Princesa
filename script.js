@@ -6,7 +6,8 @@ const INVITATION_CONFIG = {
     "https://drive.google.com/drive/folders/1g-7sus_6rImOz-gsxFt6hrd6fwnzKg2v",
   rsvpFormUrl: "https://docs.google.com/forms/",
   desktopMinWidth: 900,
-  uploadScriptUrl: "AQUI_VA_TU_WEB_APP_URL",
+  uploadScriptUrl:
+    "https://script.google.com/macros/s/AKfycbxSfMgXZCWWCPOFU5_kb1JtWanOVeNovghtt19BLb_nCPgLLr0_H5rECZOrRQlnDuQ/exec",
 };
 let audioEnabled = false;
 let introDismissed = false;
