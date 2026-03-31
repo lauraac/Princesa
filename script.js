@@ -275,6 +275,7 @@ function initRSVPForm() {
     const message = formData.get("message") || "";
 
     const payload = {
+      action: "save_rsvp",
       guestName,
       guestCount,
       attendance,
@@ -283,7 +284,7 @@ function initRSVPForm() {
     };
 
     rsvpSuccessMsg.style.display = "block";
-    rsvpSuccessMsg.textContent = `Error al enviar: ${error.message}`;
+    rsvpSuccessMsg.textContent = "Enviando confirmación... ⏳";
 
     try {
       const response = await fetch(INVITATION_CONFIG.rsvpScriptUrl, {
@@ -306,12 +307,11 @@ function initRSVPForm() {
         rsvpForm.reset();
       } else {
         console.error("Respuesta RSVP:", result);
-        rsvpSuccessMsg.textContent = `No se pudo guardar: ${result.error || "error desconocido"}`;
+        rsvpSuccessMsg.textContent = `No se pudo guardar tu confirmación: ${result.error || "error desconocido"}`;
       }
     } catch (error) {
       console.error("Error guardando RSVP:", error);
-      rsvpSuccessMsg.textContent =
-        "Ocurrió un error al enviar tu confirmación.";
+      rsvpSuccessMsg.textContent = `Error al enviar: ${error.message}`;
     }
   });
 }
