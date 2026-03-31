@@ -296,8 +296,48 @@ function initMemoryUploadForm() {
   const fileInput = document.getElementById("memoryFile");
   const nameInput = document.getElementById("memoryName");
   const msg = document.getElementById("uploadMemoryMsg");
+  const preview = document.getElementById("memoryPreview");
+  const selectedFileName = document.getElementById("selectedFileName");
+  const uploadBtn = document.getElementById("uploadMemoryBtn");
 
-  if (!form || !fileInput || !msg) return;
+  if (
+    !form ||
+    !fileInput ||
+    !msg ||
+    !preview ||
+    !selectedFileName ||
+    !uploadBtn
+  )
+    return;
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files?.[0];
+
+    if (!file) {
+      selectedFileName.textContent = "Aún no has seleccionado ningún archivo.";
+      preview.classList.remove("active");
+      preview.innerHTML = "";
+      return;
+    }
+
+    selectedFileName.textContent = `Archivo seleccionado: ${file.name}`;
+
+    const fileURL = URL.createObjectURL(file);
+
+    if (file.type.startsWith("image/")) {
+      preview.innerHTML = `<img src="${fileURL}" alt="Vista previa del recuerdo" />`;
+      preview.classList.add("active");
+    } else if (file.type.startsWith("video/")) {
+      preview.innerHTML = `<video src="${fileURL}" controls playsinline></video>`;
+      preview.classList.add("active");
+    } else {
+      preview.classList.remove("active");
+      preview.innerHTML = "";
+    }
+
+    msg.style.display = "block";
+    msg.textContent = "Ya está listo. Ahora toca “Subir foto al álbum ✨”.";
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -307,12 +347,14 @@ function initMemoryUploadForm() {
 
     if (!file) {
       msg.style.display = "block";
-      msg.textContent = "Selecciona una foto o video antes de enviar.";
+      msg.textContent = "Primero selecciona una foto o video.";
       return;
     }
 
     msg.style.display = "block";
-    msg.textContent = "Subiendo recuerdo... ⏳";
+    msg.textContent = "Subiendo tu recuerdo... ⏳";
+    uploadBtn.textContent = "Subiendo... ⏳";
+    form.classList.add("uploading-state");
 
     try {
       const base64 = await fileToBase64(file);
@@ -335,14 +377,22 @@ function initMemoryUploadForm() {
       const result = await response.json();
 
       if (result.ok) {
-        msg.textContent = "¡Gracias! Tu recuerdo se subió correctamente ✨";
+        msg.textContent =
+          "¡Gracias! Tu foto se subió correctamente al álbum ✨";
         form.reset();
+        preview.innerHTML = "";
+        preview.classList.remove("active");
+        selectedFileName.textContent =
+          "Aún no has seleccionado ningún archivo.";
       } else {
         msg.textContent = "No se pudo subir el archivo. Intenta de nuevo.";
       }
     } catch (error) {
       console.error("Error subiendo recuerdo:", error);
       msg.textContent = "Ocurrió un error al subir el archivo.";
+    } finally {
+      uploadBtn.textContent = "Subir foto al álbum ✨";
+      form.classList.remove("uploading-state");
     }
   });
 }

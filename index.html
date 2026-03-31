@@ -458,17 +458,32 @@
               </div>
 
               <div class="form-group">
-                <label for="memoryFile">Sube una foto o video</label>
+                <p class="form-label">Sube una foto o video</p>
+
+                <label for="memoryFile" class="upload-box" id="uploadBox">
+                  <div class="upload-box-icon">📷</div>
+                  <div class="upload-box-text">
+                    <strong>Toma o elige una foto</strong>
+                    <span>También puedes subir un video corto</span>
+                  </div>
+                </label>
+
                 <input type="file" id="memoryFile" name="memoryFile" accept="image/*,video/*" capture="environment"
-                  required />
+                  required hidden />
+
+                <p class="selected-file-name" id="selectedFileName">
+                  Aún no has seleccionado ningún archivo.
+                </p>
+
+                <div class="memory-preview" id="memoryPreview"></div>
               </div>
 
-              <button type="submit" class="btn-primary btn-full">
-                Enviar recuerdo 📷
+              <button type="submit" class="btn-primary btn-full" id="uploadMemoryBtn">
+                Subir foto al álbum ✨
               </button>
 
               <p class="rsvp-note">
-                Puedes tomar la foto al momento o elegir una desde tu galería.
+                Primero elige tu foto o video y después toca el botón para subirlo.
               </p>
 
               <p class="rsvp-success" id="uploadMemoryMsg"></p>
@@ -477,7 +492,7 @@
             <div class="gift-actions">
               <a href="https://drive.google.com/drive/folders/1g-7sus_6rImOz-gsxFt6hrd6fwnzKg2v" target="_blank"
                 class="btn-ghost btn-full" id="driveAlbumBtn">
-                Ver álbum compartido ✨
+                Ver fotos que ya subieron ✨
               </a>
             </div>
           </section>
